@@ -1,4 +1,6 @@
 # shopping cart
 
-preact
+A shopping cart UI widget
+
+Uses preact
 
