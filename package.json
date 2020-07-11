@@ -20,16 +20,16 @@
     }
   },
   "husky": {
-      "hooks": {
-          "pre-push": "./test/githook/prepush.sh"
-      }
+    "hooks": {
+      "pre-push": "./test/githook/prepush.sh"
+    }
   },
   "scripts": {
     "start": "npm run build-css && concurrently --kill-others \"npm run serve\" \"npm run sass-watch\"",
     "serve": "env $(cat .env | xargs) budo src/index.js:bundle.js --pushstate --dir=public --live -- -p esmify -t [ babelify --presets [ \"@babel/preset-env\" ] ] -t [ envify --NODE_ENV development ] -dv",
     "build": "npm run build-js && npm run build-css",
     "build-js": "browserify -p esmify -p bundle-collapser/plugin src/index.js -t [ envify --NODE_ENV production ] -t [ babelify --presets [ \"@babel/preset-env\" ] ] -g aliasify -g unassertify -g uglifyify | uglifyjs -mc > public/bundle.js",
-    "test": "tape test/{**/*,*}.js",
+    "test": "tape test/{**/*,*}.js | tap-spec",
     "build-css": "node-sass --output-style=compressed src/style/main.scss > public/style.css",
     "sass-watch": "node-sass --watch src/style/main.scss --source-map-embed public/style.css",
     "preversion": "npm run lint && npm test",
@@ -62,6 +62,7 @@
     "husky": "^4.2.5",
     "node-sass": "^4.14.1",
     "preact-compat": "^3.19.0",
+    "tap-spec": "^5.0.0",
     "tape": "^5.0.1",
     "uglify-js": "^3.10.0",
     "uglifyify": "^5.0.2",
