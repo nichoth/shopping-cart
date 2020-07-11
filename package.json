@@ -1,7 +1,16 @@
 {
+  "name": "@nichoth/shopping-cart",
   "version": "0.0.0",
   "description": "[pure component](https://reactjs.org/docs/react-api.html#reactpurecomponent) > React.PureComponent is similar to React.Component. The difference between them is that React.Component doesn’t implement shouldComponentUpdate(), but React.PureComponent implements it with a shallow prop and state comparison",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichoth/shopping-cart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nichoth/shopping-cart/issues"
+  },
+  "homepage": "https://github.com/nichoth/shopping-cart#readme",
   "aliasify": {
     "aliases": {
       "react": "preact-compat",
@@ -9,6 +18,11 @@
       "create-react-class": "preact-compat/lib/create-react-class",
       "react-dom-factories": "preact-compat/lib/react-dom-factories"
     }
+  },
+  "husky": {
+      "hooks": {
+          "pre-push": "./test/githook/prepush.sh"
+      }
   },
   "scripts": {
     "start": "npm run build-css && concurrently --kill-others \"npm run serve\" \"npm run sass-watch\"",
@@ -53,16 +67,7 @@
     "uglifyify": "^5.0.2",
     "unassertify": "^2.1.1"
   },
-  "name": "template-react",
   "directories": {
     "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nichoth/template-react.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nichoth/template-react/issues"
-  },
-  "homepage": "https://github.com/nichoth/template-react#readme"
+  }
 }
