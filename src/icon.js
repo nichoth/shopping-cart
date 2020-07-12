@@ -1,7 +1,7 @@
 import { render } from 'preact'
-var connect = require('./connect')
 import { html } from 'htm/preact'
 // var observ = require('observ')
+var connect = require('./connect')
 var struct = require('observ-struct')
 var subscribe = require('./subscribe')
 
@@ -27,6 +27,5 @@ function renderIcon (el) {
 }
 
 window.Icon = renderIcon
-
 export default renderIcon
 

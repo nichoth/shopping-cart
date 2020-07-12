@@ -1,7 +1,4 @@
 import { h, Component } from 'preact'
-// import htm from 'htm'
-// var html = htm.bind(h)
-// import { html } from 'htm/preact'
 var Bus = require('@nichoth/events')
 var xtend = require('xtend')
 

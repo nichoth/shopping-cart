@@ -1,8 +1,9 @@
 {
   "name": "@nichoth/shopping-cart",
   "version": "0.0.0",
-  "description": "[pure component](https://reactjs.org/docs/react-api.html#reactpurecomponent) > React.PureComponent is similar to React.Component. The difference between them is that React.Component doesn’t implement shouldComponentUpdate(), but React.PureComponent implements it with a shallow prop and state comparison",
-  "main": "index.js",
+  "description": "shopping cart thing",
+  "main": "src/index.js",
+  "browser": "dist/bundle.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nichoth/shopping-cart.git"
@@ -34,6 +35,7 @@
     "sass-watch": "node-sass --watch src/style/main.scss --source-map-embed public/style.css",
     "preversion": "npm run lint && npm test",
     "postversion": "git push --no-verify && git push --tags --no-verify",
+    "prepublish": "npm run build",
     "lint": "eslint . --config .eslintrc"
   },
   "keywords": [],
