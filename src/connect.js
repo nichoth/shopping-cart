@@ -1,10 +1,8 @@
 import { h, Component } from 'preact'
 // import htm from 'htm'
 // var html = htm.bind(h)
-var Bus = require('@nichoth/events')
-// var observ = require('observ')
-// var struct = require('observ-struct')
 // import { html } from 'htm/preact'
+var Bus = require('@nichoth/events')
 var xtend = require('xtend')
 
 function connect (state, View) {

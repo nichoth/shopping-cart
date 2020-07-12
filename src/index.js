@@ -3,19 +3,13 @@ var connect = require('./connect')
 import { html } from 'htm/preact'
 // var observ = require('observ')
 var struct = require('observ-struct')
+var subscribe = require('./subscribe')
 
 var state = struct({
     hello: 0
 })
-
 var { bus, view } = connect(state, Example)
-
-bus.on('click', function (ev) {
-    console.log('click')
-    state.set({
-        hello: state().hello + 1
-    })
-})
+subscribe(bus, state)
 
 function Example (props) {
     var { emit } = props
