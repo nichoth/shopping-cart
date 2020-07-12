@@ -7,6 +7,6 @@ Uses preact
 ## install
 
 ```
-npm install -S @nichoth/shopping-cart
+npm i -S @nichoth/shopping-cart
 ```
 
