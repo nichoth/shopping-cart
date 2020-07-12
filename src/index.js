@@ -1,55 +1,30 @@
-import { h, render, Component } from 'preact'
-import htm from 'htm'
-// import { useState } from 'preact/hooks'
-var html = htm.bind(h)
-var Bus = require('@nichoth/events')
+import { render } from 'preact'
+var connect = require('./connect')
+import { html } from 'htm/preact'
 // var observ = require('observ')
 var struct = require('observ-struct')
 
 var state = struct({
-    count: 0
+    hello: 0
 })
 
-var bus = Bus({
-    memo: true
-})
+var { bus, view } = connect(state, Example)
 
-function emit () {
-    return bus.emit.apply(bus, arguments)
-}
-
-function subscribe (bus, state) {
-    bus.on('plus', function () {
-        console.log('plus')
-        state.set({
-            count: state().count + 1
-        })
+bus.on('click', function (ev) {
+    console.log('click')
+    state.set({
+        hello: state().hello + 1
     })
+})
+
+function Example (props) {
+    var { emit } = props
+
+    return html`<div>
+        hello ${state().hello}
+        <button onClick=${emit('click')}>click</button>
+    </div>`
 }
 
-subscribe(bus, state)
-
-class Example extends Component {
-    constructor(props) {
-        super(props)
-        this.state = state()
-    }
-
-    componentDidMount () {
-        setInterval(function () {
-            emit('plus', null)
-        }, 1000)
-
-        var self = this
-        state(function onChange (data) {
-            self.setState(data)
-        })
-    }
-
-    render () {
-        return html`<div>Count: ${this.state.count} <//>`
-    }
-}
-
-render(html`<${Example} />`, document.getElementById('content'))
+render(html`<${view} />`, document.getElementById('content'))
 
