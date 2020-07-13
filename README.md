@@ -30,6 +30,8 @@ cart.createPage(document.getElementById('shopping-cart-page'))
 <script src="/path/to/cart/dist/bundle.js"></script>
 <script>
     var cart = new window.Cart({})
+    cart.createIcon(document.getElementById('shopping-cart-icon'))
+    cart.createPage(document.getElementById('shopping-cart-page'))
 </script>
 ```
 
