@@ -1,6 +1,5 @@
 import { render } from 'preact'
 import { html } from 'htm/preact'
-// import State from './state'
 var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
