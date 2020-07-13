@@ -7,8 +7,14 @@ var struct = require('observ-struct')
 class Cart extends Bus {
     constructor () {
         super()
-        this.state = struct({
+        var state = this.state = struct({
             products: []
+        })
+
+        this.on('click', ev => {
+            state.set({
+                products: state().products.concat([null])
+            })
         })
     }
 
@@ -18,12 +24,6 @@ class Cart extends Bus {
         var { view } = connect(state, CartIcon, this)
 
         this.on('click', ev => console.log('click'))
-
-        this.on('click', ev => {
-            state.set({
-                products: state().products.concat([null])
-            })
-        })
 
         function CartIcon (props) {
             var { emit } = props
