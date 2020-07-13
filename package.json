@@ -2,7 +2,7 @@
   "name": "@nichoth/shopping-cart",
   "version": "0.0.0",
   "description": "shopping cart thing",
-  "main": "src/index.js",
+  "main": "src/cart.js",
   "browser": "dist/bundle.js",
   "repository": {
     "type": "git",
