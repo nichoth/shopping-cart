@@ -13,7 +13,8 @@ npm i -S @nichoth/shopping-cart
 A browserified bundle is in `/dist`. Or you would import `src/cart` if you are bundling these prior to use.
 
 ## example
-With `import`
+
+### With `import`
 ```js
 import Cart from '../src/cart'
 
@@ -27,6 +28,7 @@ cart.createIcon(document.getElementById('shopping-cart-icon'))
 cart.createPage(document.getElementById('shopping-cart-page'))
 ```
 
+### Without importing
 ```html
 <script src="/path/to/cart/dist/bundle.js"></script>
 <script>
