@@ -28,6 +28,9 @@
     },
 
     "rules": {
+        "indent": [
+            "error", 4, { "ignoredNodes": ["TemplateLiteral *"] }
+        ],
         "arrow-parens": [0, "as-needed"],
         "react/jsx-no-bind": [2, { "ignoreRefs": true }],
         "react/jsx-no-duplicate-props": 2,
