@@ -60,5 +60,5 @@ class Cart extends Bus {
     }
 }
 
-module.exports = Cart
+export default Cart
 
