@@ -34,3 +34,11 @@ cart.createPage(document.getElementById('shopping-cart-page'))
 ```
 
 
+-------------------------------------------
+
+[Creating A Shopping Cart With HTML5 Web Storage](https://www.smashingmagazine.com/2019/08/shopping-cart-html5-web-storage/)
+
+[Ecommerce cart design best practices](https://webflow.com/blog/ecommerce-cart-design)
+
+
+
