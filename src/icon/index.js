@@ -1,18 +1,11 @@
 import { render } from 'preact'
 import { html } from 'htm/preact'
-// var observ = require('observ')
 var connect = require('../connect')
-var struct = require('observ-struct')
 var subscribe = require('./subscribe')
 
-function createCart (el) {
-    var state = struct({
-        products: []
-    })
-
+function createCartIcon (state, el) {
     var { bus, view } = connect(state, Cart)
     var api = subscribe(bus, state)
-
 
     function Cart (props) {
         var { emit } = props
@@ -27,9 +20,9 @@ function createCart (el) {
     var _el = el || document.getElementById('shopping-cart-icon')
     render(html`<${view} />`, _el)
 
-    return { state, api }
+    return { api }
 }
 
-window.Icon = createCart
-export default createCart
+window.Icon = createCartIcon
+export default createCartIcon
 

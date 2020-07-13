@@ -18,6 +18,7 @@ function subscribe (bus, state) {
         api.add(null)
     })
 
+    return api
 }
 
 module.exports = subscribe

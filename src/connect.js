@@ -2,13 +2,13 @@ import { h, Component } from 'preact'
 var Bus = require('@nichoth/events')
 var xtend = require('xtend')
 
-function connect (state, View) {
-    var bus = Bus({
+function connect (state, View, bus) {
+    var _bus = bus || Bus({
         memo: true
     })
 
     function emit () {
-        return bus.emit.apply(bus, arguments)
+        return _bus.emit.apply(_bus, arguments)
     }
 
     class Connector extends Component {
@@ -29,7 +29,7 @@ function connect (state, View) {
         }
     }
 
-    return { bus, view: Connector }
+    return { _bus, view: Connector }
 }
 
 module.exports = connect
