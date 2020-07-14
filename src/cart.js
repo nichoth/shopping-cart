@@ -29,6 +29,10 @@ class Cart extends Bus {
         }))
     }
 
+    get () {
+        return this.state().products
+    }
+
     remove () {
         // TODO
         // * rm from localStorage
@@ -37,13 +41,6 @@ class Cart extends Bus {
     buyThings () {
         // call a server endpoint with a list of product IDs
         // return a promise for the request
-
-        // server returns the payment intent
-        // then you go to a page to confirm the order and
-        // do the stripe.confirmPayment there
-
-        // once you have the intent, client side route to the confirmation
-        // page, intent stays in memory
     }
 
     createIcon (el) {
