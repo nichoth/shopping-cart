@@ -3,6 +3,7 @@ import { html } from 'htm/preact'
 var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
+var xtend = require('xtend')
 
 class Cart extends Bus {
     constructor () {
@@ -16,6 +17,33 @@ class Cart extends Bus {
                 products: state().products.concat([null])
             })
         })
+    }
+
+    add (product) {
+        // TODO
+        // * add to localStorage
+
+        var state = this.state
+        state.set(xtend(state(), {
+            products: state().products.concat([product])
+        }))
+    }
+
+    remove () {
+        // TODO
+        // * rm from localStorage
+    }
+
+    buyThings () {
+        // call a server endpoint with a list of product IDs
+        // return a promise for the request
+
+        // server returns the payment intent
+        // then you go to a page to confirm the order and
+        // do the stripe.confirmPayment there
+
+        // once you have the intent, client side route to the confirmation
+        // page, intent stays in memory
     }
 
     createIcon (el) {
