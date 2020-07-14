@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "shopping cart thing",
   "main": "src/cart.js",
-  "browser": "dist/bundle.js",
+  "browser": "src/cart.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nichoth/shopping-cart.git"
