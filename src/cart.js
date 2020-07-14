@@ -54,7 +54,7 @@ class Cart extends Bus {
             var { emit } = props
             var { products } = state()
 
-            return html`<div>
+            return html`<div id="cart-icon">
                 clicks: ${products.length + ' '}
                 <button onClick=${emit('click')}>click</button>
             </div>`
