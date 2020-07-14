@@ -77,5 +77,6 @@
   },
   "directories": {
     "test": "test"
-  }
+  },
+  "private": false
 }
