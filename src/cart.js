@@ -14,18 +14,16 @@ class Cart extends Bus {
             products: []
         })
 
+        var self = this
         this.on('click', ev => {
-            state.set({
-                products: state().products.concat([null])
-            })
+            console.log('click', ev)
+            self.add('prod')
         })
 
-        // TODO
-        // * load things from localstorage
         if (storage) {
             this.storage = true
             var storageState = localStorage.getItem(KEY)
-            if (storageState) state.set(storageState)
+            if (storageState) state.set(JSON.parse(storageState))
         }
     }
 
@@ -62,8 +60,6 @@ class Cart extends Bus {
         var state = this.state
         var { view } = connect(state, CartIcon, this)
 
-        this.on('click', ev => console.log('click'))
-
         function CartIcon (props) {
             var { emit } = props
             var { products } = state()
@@ -79,11 +75,9 @@ class Cart extends Bus {
     }
 
     createPage (el) {
-        // pass in `this` as bus
         var state = this.state
+        // pass in `this` as bus
         var { view } = connect(state, CartPage, this)
-
-        this.on('click', ev => console.log('click here'))
 
         function CartPage (props) {
             return html`<div>
