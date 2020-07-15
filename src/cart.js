@@ -42,7 +42,7 @@ class Cart extends Bus {
         }
     }
 
-    get () {
+    products () {
         return this.state().products
     }
 
