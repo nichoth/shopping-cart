@@ -4,7 +4,9 @@ var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
 var xtend = require('xtend')
-var KEY = 'cart'
+import _key from './KEY'
+var KEY = 'cart-' + _key
+console.log('key', KEY)
 
 class Cart extends Bus {
     constructor ({ storage } = { storage: true }) {
