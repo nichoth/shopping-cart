@@ -88,7 +88,7 @@ class Cart extends Bus {
             </div>`
         }
 
-        var _el = el || document.getElementById('shopping-cart-icon')
+        var _el = el || document.getElementById('shopping-cart-page')
         render(html`<${view} />`, _el)
     }
 }
