@@ -4,10 +4,12 @@ var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
 var xtend = require('xtend')
+var KEY = 'cart'
 
 class Cart extends Bus {
-    constructor () {
+    constructor ({ storage } = { storage: true }) {
         super()
+
         var state = this.state = struct({
             products: []
         })
@@ -17,6 +19,14 @@ class Cart extends Bus {
                 products: state().products.concat([null])
             })
         })
+
+        // TODO
+        // * load things from localstorage
+        if (storage) {
+            this.storage = true
+            var storageState = localStorage.getItem(KEY)
+            if (storageState) state.set(storageState)
+        }
     }
 
     add (product) {
@@ -27,6 +37,10 @@ class Cart extends Bus {
         state.set(xtend(state(), {
             products: state().products.concat([product])
         }))
+
+        if (this.storage) {
+            window.localStorage.setItem(KEY, JSON.stringify(state()))
+        }
     }
 
     get () {
