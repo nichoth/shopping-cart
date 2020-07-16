@@ -6,6 +6,7 @@ var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
 var xtend = require('xtend')
+var EVENTS = require('./EVENTS')
 
 class Cart extends Bus {
     constructor (_opts) {
@@ -97,22 +98,28 @@ class Cart extends Bus {
         var { view } = connect(state, CartPage, this)
         var self = this
 
+        function onRemove (ev, i) {
+            ev.preventDefault()
+            self.remove(i)
+            self.emit(EVENTS.cart.remove, i)
+        }
+
         function CartPage (props) {
             return html`<ul id="cart-page">
                 ${state().products.map((product, i) => {
                     return html`<li>
                         ${mapper(html, product, i)}
-                        <button onClick=${ev => remove(ev, i)}>
+                        <button onClick=${ev => onRemove(ev, i)}>
                             <${IconX} />
                         </button>
                     </li>`
                 })}
             </ul>`
 
-            function remove (ev, i) {
-                ev.preventDefault()
-                self.remove(i)
-            }
+            // function remove (ev, i) {
+            //     ev.preventDefault()
+            //     self.remove(i)
+            // }
         }
 
         var _el = el || document.getElementById('shopping-cart-page')
