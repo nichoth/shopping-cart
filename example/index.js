@@ -7,7 +7,9 @@ var cart = new Cart({
 
 // pass in an element to mount it at
 // or it will automatically mount to the given ID
-cart.createIcon(document.getElementById('shopping-cart-icon'))
+cart.createIcon(document.getElementById('shopping-cart-icon'), {
+    link: 'example.com'
+})
 cart.createPage(document.getElementById('shopping-cart-page'), mapper)
 
 function mapper (html, product) {

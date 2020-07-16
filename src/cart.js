@@ -67,19 +67,22 @@ class Cart extends Bus {
         // return a promise for the request
     }
 
-    createIcon (el) {
+    createIcon (el, opts) {
         // pass in `this` as bus
         var state = this.state
         var { view } = connect(state, CartIcon, this)
+        var { link } = opts
 
         function CartIcon (props) {
             // var { emit } = props
             var { products } = state()
 
-            return html`<div id="cart-icon">
-                <span id="cart-quantity">${products.length} <//>
-                <${Icon} />
-            </div>`
+            return html`<a href=${link}>
+                <div id="cart-icon">
+                    <span id="cart-quantity">${products.length} <//>
+                    <${Icon} />
+                </div>
+            </a>`
         }
         // <button onClick=${emit('click')}>click</button>
 
