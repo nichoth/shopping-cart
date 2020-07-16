@@ -1,5 +1,6 @@
 import { render } from 'preact'
 import { html } from 'htm/preact'
+import Icon from './icon'
 var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
@@ -7,6 +8,7 @@ var xtend = require('xtend')
 
 class Cart extends Bus {
     constructor (_opts) {
+        _opts = _opts || {}
         var opts = {
             storage: _opts.storage === undefined ? true : _opts.storage,
             key: _opts.key || 'cart'
@@ -71,6 +73,7 @@ class Cart extends Bus {
 
             return html`<div id="cart-icon">
                 clicks: ${products.length + ' '}
+                <${Icon} />
                 <button onClick=${emit('click')}>click</button>
             </div>`
         }
