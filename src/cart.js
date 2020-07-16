@@ -4,16 +4,19 @@ var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
 var xtend = require('xtend')
-import _key from './KEY'
-var KEY = 'cart-' + _key
 
 class Cart extends Bus {
-    constructor ({ storage } = { storage: true }) {
+    constructor (_opts) {
+        var opts = {
+            storage: _opts.storage === undefined ? true : _opts.storage,
+            key: _opts.key || 'cart'
+        }
         super()
 
         var state = this.state = struct({
             products: []
         })
+        this.KEY = opts.key
 
         var self = this
         this.on('click', ev => {
@@ -24,9 +27,9 @@ class Cart extends Bus {
             })
         })
 
-        if (storage) {
+        if (opts.storage) {
             this.storage = true
-            var storageState = localStorage.getItem(KEY)
+            var storageState = localStorage.getItem(this.KEY)
             if (storageState) state.set(JSON.parse(storageState))
         }
     }
@@ -41,7 +44,7 @@ class Cart extends Bus {
         }))
 
         if (this.storage) {
-            window.localStorage.setItem(KEY, JSON.stringify(state()))
+            window.localStorage.setItem(this.KEY, JSON.stringify(state()))
         }
     }
 
