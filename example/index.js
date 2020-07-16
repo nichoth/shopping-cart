@@ -10,8 +10,8 @@ cart.createPage(document.getElementById('shopping-cart-page'), mapper)
 function mapper (html, product) {
     console.log('here', product)
     return html`
-        <span>${product.name}</span>
-        <span>${' ' + product.price}<//>
+        <span>name: ${product.name || 'none'}</span>
+        <span>price: ${product.price || 'none'}<//>
     `
 }
 

@@ -1,6 +1,7 @@
 import { render } from 'preact'
 import { html } from 'htm/preact'
 import Icon from './icon'
+import IconX from './icon-x'
 var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
@@ -90,9 +91,19 @@ class Cart extends Bus {
         function CartPage (props) {
             return html`<ul id="cart-page">
                 ${state().products.map((product, i) => {
-                    return html`<li>${mapper(html, product, i)}</li>`
+                    return html`<li>
+                        ${mapper(html, product, i)}
+                        <button onClick=${ev => remove(ev, i)}>
+                            <${IconX} />
+                        </button>
+                    </li>`
                 })}
             </ul>`
+
+            function remove (ev, i) {
+                console.log('remove product', i)
+                ev.preventDefault()
+            }
         }
 
         var _el = el || document.getElementById('shopping-cart-page')
