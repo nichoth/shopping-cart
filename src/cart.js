@@ -85,8 +85,8 @@ class Cart extends Bus {
 
         function CartPage (props) {
             return html`<ul id="cart-page">
-                ${state().products.map(product => {
-                    return mapper(html, product)
+                ${state().products.map((product, i) => {
+                    return mapper(html, product, i)
                 })}
             </ul>`
         }
