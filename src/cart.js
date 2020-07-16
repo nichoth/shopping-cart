@@ -18,7 +18,10 @@ class Cart extends Bus {
         var self = this
         this.on('click', ev => {
             console.log('click', ev)
-            self.add('prod')
+            self.add({
+                name: 'prod',
+                price: 10
+            })
         })
 
         if (storage) {
@@ -75,18 +78,17 @@ class Cart extends Bus {
         render(html`<${view} />`, _el)
     }
 
-    createPage (el) {
+    createPage (el, mapper) {
         var state = this.state
         // pass in `this` as bus
         var { view } = connect(state, CartPage, this)
 
         function CartPage (props) {
-            return html`<div>
-                cart page
+            return html`<ul id="cart-page">
                 ${state().products.map(product => {
-                    return html`<li>product</li>`
+                    return mapper(html, product)
                 })}
-            </div>`
+            </ul>`
         }
 
         var _el = el || document.getElementById('shopping-cart-page')
