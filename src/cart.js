@@ -78,8 +78,8 @@ class Cart extends Bus {
             // var { emit } = props
             var { products } = state()
 
-            return html`<a href=${link}>
-                <div id="cart-icon">
+            return html`<a href=${link} id="cart-icon">
+                <div>
                     <span id="cart-quantity">${products.length} <//>
                     <${Icon} />
                 </div>
