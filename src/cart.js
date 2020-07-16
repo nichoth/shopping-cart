@@ -69,6 +69,7 @@ class Cart extends Bus {
 
     createIcon (el, opts) {
         // pass in `this` as bus
+        opts = opts || {}
         var state = this.state
         var { view } = connect(state, CartIcon, this)
         var { link } = opts
