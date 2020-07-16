@@ -1,9 +1,10 @@
 var test = require('tape')
 import Cart from '../src/cart'
 
-var cart = new Cart({ storage: false })
+var cart
 
 test('cart', function (t) {
+    cart = new Cart({ storage: false })
     cart.createIcon()
     t.ok(cart, 'should create cart')
     t.end()
