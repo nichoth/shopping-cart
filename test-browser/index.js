@@ -3,9 +3,13 @@ import Cart from '../src/cart'
 
 var cart = new Cart({ storage: false })
 
-test('example', function (t) {
-    t.ok(cart, 'should create cart')
+test('cart', function (t) {
     cart.createIcon()
+    t.ok(cart, 'should create cart')
+    t.end()
+})
+
+test('cart.add', function (t) {
     t.end()
 })
 

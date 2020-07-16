@@ -2,4 +2,5 @@ node_modules/
 dist/
 src/icon.js
 src/icon-x.js
+src/icon-x-circle.js
 
