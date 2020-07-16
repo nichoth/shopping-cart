@@ -21,14 +21,14 @@ class Cart extends Bus {
         })
         this.KEY = opts.key
 
-        var self = this
-        this.on('click', ev => {
-            console.log('click', ev)
-            self.add({
-                name: 'prod',
-                price: 10
-            })
-        })
+        // var self = this
+        // this.on('click', ev => {
+        //     console.log('click', ev)
+        //     self.add({
+        //         name: 'prod',
+        //         price: 10
+        //     })
+        // })
 
         if (opts.storage) {
             this.storage = true
@@ -73,15 +73,15 @@ class Cart extends Bus {
         var { view } = connect(state, CartIcon, this)
 
         function CartIcon (props) {
-            var { emit } = props
+            // var { emit } = props
             var { products } = state()
 
             return html`<div id="cart-icon">
                 <span id="cart-quantity">${products.length} <//>
                 <${Icon} />
-                <button onClick=${emit('click')}>click</button>
             </div>`
         }
+        // <button onClick=${emit('click')}>click</button>
 
         var _el = el || document.getElementById('shopping-cart-icon')
         render(html`<${view} />`, _el)
