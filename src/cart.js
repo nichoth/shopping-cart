@@ -56,6 +56,13 @@ class Cart extends Bus {
         // TODO
         // * rm from state
         // * rm from localStorage
+        var state = this.state
+        var products = state().products
+        products.splice(index, 1)
+        state.set({ products })
+        if (this.storage) {
+            window.localStorage.setItem(this.KEY, JSON.stringify(state()))
+        }
     }
 
     buyThings () {
@@ -87,6 +94,7 @@ class Cart extends Bus {
         var state = this.state
         // pass in `this` as bus
         var { view } = connect(state, CartPage, this)
+        var self = this
 
         function CartPage (props) {
             return html`<ul id="cart-page">
@@ -103,6 +111,7 @@ class Cart extends Bus {
             function remove (ev, i) {
                 console.log('remove product', i)
                 ev.preventDefault()
+                self.remove(i)
             }
         }
 
