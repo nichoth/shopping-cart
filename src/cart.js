@@ -35,9 +35,6 @@ class Cart extends Bus {
     }
 
     add (product) {
-        // TODO
-        // * add to localStorage
-
         var state = this.state
         state.set(xtend(state(), {
             products: state().products.concat([product])
@@ -52,8 +49,9 @@ class Cart extends Bus {
         return this.state().products
     }
 
-    remove () {
+    remove (index) {
         // TODO
+        // * rm from state
         // * rm from localStorage
     }
 
