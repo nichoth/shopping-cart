@@ -18,3 +18,9 @@ test('cart.add and cart.products', function (t) {
     t.end()
 })
 
+test('cart.remove', function (t) {
+    cart.remove(0)
+    t.equal(cart.products()[0], undefined, 'should remove a thing')
+    t.end()
+})
+
