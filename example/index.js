@@ -13,7 +13,7 @@ cart.createPage(document.getElementById('shopping-cart-page'), mapper)
 function mapper (html, product) {
     console.log('in map', product)
     return html`
-        <span>name: ${product.name || 'none'}</span>
+        <span>name: ${product.name || 'none'}, </span>
         <span>price: ${product.price || 'none'}<//>
     `
 }
