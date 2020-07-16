@@ -53,9 +53,6 @@ class Cart extends Bus {
     }
 
     remove (index) {
-        // TODO
-        // * rm from state
-        // * rm from localStorage
         var state = this.state
         var products = state().products
         products.splice(index, 1)
@@ -109,7 +106,6 @@ class Cart extends Bus {
             </ul>`
 
             function remove (ev, i) {
-                console.log('remove product', i)
                 ev.preventDefault()
                 self.remove(i)
             }
