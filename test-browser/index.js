@@ -24,3 +24,11 @@ test('cart.remove', function (t) {
     t.end()
 })
 
+test('cart.empty', function (t) {
+    cart.add({ name: 'ok' })
+    t.equal(cart.products().length, 1, 'should have 1 thing')
+    cart.empty()
+    t.equal(cart.products().length, 0, 'should remove all the things')
+    t.end()
+})
+

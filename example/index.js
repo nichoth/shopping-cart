@@ -20,3 +20,30 @@ function mapper (html, product) {
     `
 }
 
+// ---------------- button to add a thing ----------------
+
+var el = document.createElement('div')
+var btn = document.createElement('button')
+btn.appendChild(document.createTextNode('add a thing'))
+el.appendChild(btn)
+
+var n = 0
+btn.addEventListener('click', function (ev) {
+    cart.add({ name: 'abc ' + n, price: 10 })
+    n++
+})
+
+document.body.appendChild(el)
+
+// ------------------------------------------------------------
+var emptyBtn = document.createElement('button')
+emptyBtn.appendChild(document.createTextNode('empty'))
+document.body.appendChild(emptyBtn)
+emptyBtn.addEventListener('click', function (ev) {
+    ev.preventDefault()
+    cart.empty()
+})
+
+
+
+

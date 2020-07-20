@@ -63,9 +63,8 @@ class Cart extends Bus {
         }
     }
 
-    buyThings () {
-        // call a server endpoint with a list of product IDs
-        // return a promise for the request
+    empty () {
+        this.state.set(xtend(this.state(), { products: [] }))
     }
 
     createIcon (el, opts) {
