@@ -65,6 +65,10 @@ class Cart extends Bus {
 
     empty () {
         this.state.set(xtend(this.state(), { products: [] }))
+        if (this.storage) {
+            var data = JSON.stringify(this.state())
+            window.localStorage.setItem(this.KEY, data)
+        }
     }
 
     createIcon (el, opts) {
