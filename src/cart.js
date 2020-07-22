@@ -6,7 +6,7 @@ var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
 var xtend = require('xtend')
-var EVENTS = require('./EVENTS')
+import EVENTS from './EVENTS'
 
 class Cart extends Bus {
     constructor (_opts) {
