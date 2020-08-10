@@ -54,7 +54,7 @@ class Cart extends Bus {
     }
 
     remove (index) {
-        var state = this.state
+        var state = this.state().products
         var products = state().products
         products.splice(index, 1)
         state.set({ products })
@@ -79,7 +79,6 @@ class Cart extends Bus {
         var { link } = opts
 
         function CartIcon (props) {
-            // var { emit } = props
             var { products } = state()
 
             return html`<a href=${link} id="cart-icon">
@@ -89,7 +88,6 @@ class Cart extends Bus {
                 </div>
             </a>`
         }
-        // <button onClick=${emit('click')}>click</button>
 
         var _el = el || document.getElementById('shopping-cart-icon')
         render(html`<${view} />`, _el)
@@ -118,11 +116,6 @@ class Cart extends Bus {
                     </li>`
                 })}
             </ul>`
-
-            // function remove (ev, i) {
-            //     ev.preventDefault()
-            //     self.remove(i)
-            // }
         }
 
         var _el = el || document.getElementById('shopping-cart-page')
