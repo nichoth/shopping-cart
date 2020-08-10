@@ -54,7 +54,7 @@ class Cart extends Bus {
     }
 
     remove (index) {
-        var state = this.state().products
+        var state = this.state
         var products = state().products
         products.splice(index, 1)
         state.set({ products })
@@ -101,7 +101,7 @@ class Cart extends Bus {
 
         function onRemove (ev, i) {
             ev.preventDefault()
-            self.remove(i)
+            self.remove.call(self, i)
             self.emit(EVENTS.cart.remove, i)
         }
 
