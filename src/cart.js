@@ -5,6 +5,7 @@ import IconX from './icon-x'
 var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
+var observ = require('observ')
 var xtend = require('xtend')
 import EVENTS from './EVENTS'
 
@@ -18,23 +19,17 @@ class Cart extends Bus {
         super()
 
         var state = this.state = struct({
-            products: []
+            products: [],
+            ohno: observ(false)
         })
         this.KEY = opts.key
-
-        // var self = this
-        // this.on('click', ev => {
-        //     console.log('click', ev)
-        //     self.add({
-        //         name: 'prod',
-        //         price: 10
-        //     })
-        // })
 
         if (opts.storage) {
             this.storage = true
             var storageState = localStorage.getItem(this.KEY)
-            if (storageState) state.set(JSON.parse(storageState))
+            if (storageState) state.set({
+                products: JSON.parse(storageState).products
+            })
         }
     }
 
@@ -45,7 +40,9 @@ class Cart extends Bus {
         }))
 
         if (this.storage) {
-            window.localStorage.setItem(this.KEY, JSON.stringify(state()))
+            window.localStorage.setItem(this.KEY, JSON.stringify({
+                products: state().products
+            }))
         }
     }
 
@@ -57,16 +54,18 @@ class Cart extends Bus {
         var state = this.state
         var products = state().products
         products.splice(index, 1)
-        state.set({ products })
+        state.set(xtend(state(), { products }))
         if (this.storage) {
-            window.localStorage.setItem(this.KEY, JSON.stringify(state()))
+            window.localStorage.setItem(this.KEY, JSON.stringify({
+                products: state().products
+            }))
         }
     }
 
     empty () {
         this.state.set(xtend(this.state(), { products: [] }))
         if (this.storage) {
-            var data = JSON.stringify(this.state())
+            var data = JSON.stringify({ products: this.state().products })
             window.localStorage.setItem(this.KEY, data)
         }
     }
@@ -79,18 +78,30 @@ class Cart extends Bus {
         var { link } = opts
 
         function CartIcon (props) {
+            var { ohno } = state()
             var { products } = state()
 
-            return html`<a href=${link} id="cart-icon">
+            var content = ohno ? '!' : products.length
+
+            return html`<a href=${link} id="cart-icon"
+                class=${ohno ? 'ohno' : ''}
+            >
                 <div>
-                    <span id="cart-quantity">${products.length} <//>
+                    <span id="cart-quantity" class="${ohno ? 'ohno' : ''}">
+                        ${content}
+                    <//>
                     <${Icon} />
                 </div>
             </a>`
         }
 
-        var _el = el || document.getElementById('shopping-cart-icon')
+        var _el = this.iconEL = (el ||
+            document.getElementById('shopping-cart-icon'))
         render(html`<${view} />`, _el)
+    }
+
+    ohno () {
+        this.state.ohno.set(true)
     }
 
     createPage (el, mapper) {

@@ -5,6 +5,8 @@ var cart = new Cart({
     storage: true
 })
 
+window.cart = cart
+
 // pass in an element to mount it at
 // or it will automatically mount to the given ID
 cart.createIcon(document.getElementById('shopping-cart-icon'), {
