@@ -1,5 +1,6 @@
 var test = require('tape')
 import Cart from '../src/cart'
+import EVENTS from '../src/EVENTS'
 
 var cart
 
@@ -19,9 +20,12 @@ test('cart.add and cart.products', function (t) {
 })
 
 test('cart.changeQuantity', function (t) {
+    t.plan(2)
+    cart.on(EVENTS.quantity.change, function (ev) {
+        t.ok(ev, 'should emit change event')
+    })
     cart.changeQuantity(0, 3)
     t.equal(cart.products()[0].quantity, 3, 'should update the quantity')
-    t.end()
 })
 
 test('cart.remove', function (t) {
