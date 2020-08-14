@@ -33,12 +33,24 @@ class Cart extends Bus {
         }
     }
 
-    add (product) {
+    add (_product) {
         var state = this.state
+        var product = xtend(_product, {
+            quantity: _product.quantity || 1
+        })
         state.set(xtend(state(), {
             products: state().products.concat([product])
         }))
 
+        if (this.storage) {
+            window.localStorage.setItem(this.KEY, JSON.stringify({
+                products: state().products
+            }))
+        }
+    }
+
+    changeQuantity (i, quantity) {
+        this.state().products[i].quantity = quantity
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
                 products: state().products

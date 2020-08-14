@@ -11,10 +11,16 @@ test('cart', function (t) {
 })
 
 test('cart.add and cart.products', function (t) {
-    var product = { name: 'foo' }
+    var product = { name: 'foo', quantity: 1 }
     cart.add(product)
     var ps = cart.products()
-    t.equal(product, ps[0], 'should add and return the thing')
+    t.equal(product.name, ps[0].name, 'should add and return the thing')
+    t.end()
+})
+
+test('cart.changeQuantity', function (t) {
+    cart.changeQuantity(0, 3)
+    t.equal(cart.products()[0].quantity, 3, 'should update the quantity')
     t.end()
 })
 
