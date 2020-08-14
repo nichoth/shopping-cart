@@ -50,8 +50,13 @@ class Cart extends Bus {
     }
 
     changeQuantity (i, quantity) {
-        this.state().products[i].quantity = quantity
         var state = this.state
+        var prods = state().products
+        prods[i].quantity = quantity
+        state.set({
+            ohno: state().ohno,
+            products: prods
+        })
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
                 products: state().products

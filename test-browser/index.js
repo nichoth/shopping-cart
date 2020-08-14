@@ -20,7 +20,12 @@ test('cart.add and cart.products', function (t) {
 })
 
 test('cart.changeQuantity', function (t) {
-    t.plan(2)
+    t.plan(3)
+    var state = cart.state
+    var rm = state(function onChange (data) {
+        t.ok(data, 'should update state')
+        rm()
+    })
     cart.on(EVENTS.quantity.change, function (ev) {
         t.ok(ev, 'should emit change event')
     })
