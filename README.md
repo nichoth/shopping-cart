@@ -56,6 +56,13 @@ cart.empty()  // remove everything in the cart
 ```
 
 
+## develop
+
+Start a local dev server
+```
+npm start
+```
+
 -------------------------------------------
 
 [Creating A Shopping Cart With HTML5 Web Storage](https://www.smashingmagazine.com/2019/08/shopping-cart-html5-web-storage/)
