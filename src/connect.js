@@ -33,4 +33,3 @@ function connect (state, View, bus) {
 }
 
 module.exports = connect
-

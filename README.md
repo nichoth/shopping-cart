@@ -16,13 +16,33 @@ A browserified bundle is in `/dist`. Or you would import `src/cart` if you are b
 
 ### With `import`
 ```js
-import Cart from '../src/cart'
+import Cart from '@nichoth/shopping-cart'
+import EVENTS from '@nichoth/cart/EVENTS'
 
-var cart = new Cart()
+// args are optional
+var cart = new Cart({
+    storage: true // store the state in localStorage?
+    key: 'cart'  // default is 'cart'
+})
 // pass in an element to mount it at
 // or it will automatically mount to the given ID
 cart.createIcon(document.getElementById('shopping-cart-icon'))
 cart.createPage(document.getElementById('shopping-cart-page'))
+
+// `cart` is an event eitter
+cart.on(EVENTS.quantity.change, ev => {
+    console.log('quantity', ev.quantity)
+    console.log('index', ev.index)
+})
+
+cart.on(EVENTS.cart.remove, index => {
+    console.log('index of the removed item', index)
+})
+
+var products = cart.products()
+
+cart.remove(1) // remove the product at index 1
+cart.empty()  // remove everything in the cart
 ```
 
 ### Without importing
@@ -41,6 +61,4 @@ cart.createPage(document.getElementById('shopping-cart-page'))
 [Creating A Shopping Cart With HTML5 Web Storage](https://www.smashingmagazine.com/2019/08/shopping-cart-html5-web-storage/)
 
 [Ecommerce cart design best practices](https://webflow.com/blog/ecommerce-cart-design)
-
-
 
