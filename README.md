@@ -27,7 +27,15 @@ var cart = new Cart({
 // pass in an element to mount it at
 // or it will automatically mount to the given ID
 cart.createIcon(document.getElementById('shopping-cart-icon'))
-cart.createPage(document.getElementById('shopping-cart-page'))
+cart.createPage(document.getElementById('shopping-cart-page'), mapper)
+
+function mapper (html, product) {  // `html` here is from 'htm' on npm
+    console.log('in map', product)
+    return html`
+        <span>name: ${product.name || 'none'}, </span>
+        <span>price: ${product.price || 'none'}<//>
+    `
+}
 
 // `cart` is an event eitter
 cart.on(EVENTS.quantity.change, ev => {
