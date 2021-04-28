@@ -51,6 +51,20 @@ var products = cart.products()
 
 cart.remove(1) // remove the product at index 1
 cart.empty()  // remove everything in the cart
+
+// add something
+// icon and page in the UI will auto update
+// index is for the item that was added
+// default quantity of 1 will be added if no quantity key is present
+var index = cart.add({ name: 'my product', quantity: 1, price: 10 }) {
+
+// index of item & desired quantity
+// returns itself for chaining
+cart = cart.changeQuantity(0, 2) {
+
+// get the cart state
+var state = cart.state()
+var { products } = state
 ```
 
 ### Without importing

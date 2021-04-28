@@ -38,6 +38,9 @@ class Cart extends Bus {
         var product = xtend(_product, {
             quantity: _product.quantity || 1
         })
+
+        var i = state().products.length
+
         state.set(xtend(state(), {
             products: state().products.concat([product])
         }))
@@ -47,6 +50,8 @@ class Cart extends Bus {
                 products: state().products
             }))
         }
+
+        return i
     }
 
     changeQuantity (i, quantity) {
@@ -63,6 +68,7 @@ class Cart extends Bus {
             }))
         }
         this.emit(EVENTS.quantity.change, { index: i, quantity: quantity })
+        return this
     }
 
     products () {
