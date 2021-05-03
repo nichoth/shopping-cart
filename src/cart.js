@@ -106,7 +106,7 @@ class Cart extends Bus {
             var { ohno } = state()
             var { products } = state()
 
-            var quant = products.reduct((total, prod) => {
+            var quant = products.reduce((total, prod) => {
                 return total + (prod.quantity || 1)
             }, 0)
 
