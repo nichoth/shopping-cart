@@ -17,7 +17,7 @@ A browserified bundle is in `/dist`. Or you would import `src/cart` if you are b
 ### With `import`
 ```js
 import Cart from '@nichoth/shopping-cart'
-import EVENTS from '@nichoth/cart/EVENTS'
+import EVENTS from '@nichoth/shopping-cart/src/EVENTS'
 
 // args are optional
 var cart = new Cart({
