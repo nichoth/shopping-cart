@@ -106,7 +106,11 @@ class Cart extends Bus {
             var { ohno } = state()
             var { products } = state()
 
-            var content = ohno ? '!' : products.length
+            var quant = products.reduct((total, prod) => {
+                return total + (prod.quantity || 1)
+            }, 0)
+
+            var content = ohno ? '!' : quant
 
             return html`<a href=${link} id="cart-icon"
                 class=${ohno ? 'ohno' : ''}
