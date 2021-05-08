@@ -26,7 +26,9 @@ var cart = new Cart({
 })
 // pass in an element to mount it at
 // or it will automatically mount to the given ID
-cart.createIcon(document.getElementById('shopping-cart-icon'))
+cart.createIcon(document.getElementById('shopping-cart-icon'), {
+    link: '/my-cart'
+})
 cart.createPage(document.getElementById('shopping-cart-page'), mapper)
 
 function mapper (html, product) {  // `html` here is from 'htm' on npm
@@ -72,7 +74,9 @@ var { products } = state
 <script src="/path/to/cart/dist/bundle.js"></script>
 <script>
     var cart = new window.Cart({})
-    cart.createIcon(document.getElementById('shopping-cart-icon'))
+    cart.createIcon(document.getElementById('shopping-cart-icon'), {
+        link: '/my-shopping-cart'
+    })
     cart.createPage(document.getElementById('shopping-cart-page'))
 </script>
 ```

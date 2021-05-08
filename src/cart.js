@@ -126,6 +126,7 @@ class Cart extends Bus {
 
         var _el = this.iconEL = (el ||
             document.getElementById('shopping-cart-icon'))
+
         render(html`<${view} />`, _el)
     }
 
