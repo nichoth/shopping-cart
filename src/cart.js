@@ -132,6 +132,7 @@ class Cart extends Bus {
 
     ohno () {
         this.state.ohno.set(true)
+        return this
     }
 
     createPage (el, mapper) {
