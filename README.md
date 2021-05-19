@@ -39,7 +39,7 @@ function mapper (html, product) {  // `html` here is from 'htm' on npm
     `
 }
 
-// `cart` is an event eitter
+// `cart` is an event emitter
 cart.on(EVENTS.quantity.change, ev => {
     console.log('quantity', ev.quantity)
     console.log('index', ev.index)
