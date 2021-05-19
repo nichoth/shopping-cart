@@ -35,7 +35,7 @@
     "build-css": "node-sass --output-style=compressed src/style/main.scss > dist/style.css",
     "sass-watch": "node-sass --watch src/style/main.scss --source-map-embed public/style.css",
     "preversion": "npm run lint && npm test",
-    "postversion": "git push --no-verify && git push --tags --no-verify",
+    "postversion": "git push --no-verify && git push --tags --no-verify && npm publish",
     "prepublish": "npm run build",
     "lint": "eslint . --config .eslintrc"
   },
