@@ -24,6 +24,21 @@ var cart = new Cart({
     storage: true // store the state in localStorage?
     key: 'cart'  // default is 'cart'
 })
+
+// `cart` is an event emitter
+cart.on(EVENTS.quantity.change, ev => {
+    console.log('quantity', ev.quantity)
+    console.log('index', ev.index)
+})
+
+cart.on(EVENTS.cart.remove, index => {
+    console.log('index of the removed item', index)
+})
+
+cart.on(EVENTS.product.change, (index, updatedProduct) => {
+    console.log('product change', updatedProduct)
+})
+
 // pass in an element to mount it at
 // or it will automatically mount to the given ID
 cart.createIcon(document.getElementById('shopping-cart-icon'), {
@@ -39,16 +54,6 @@ function mapper (html, product) {  // `html` here is from 'htm' on npm
     `
 }
 
-// `cart` is an event emitter
-cart.on(EVENTS.quantity.change, ev => {
-    console.log('quantity', ev.quantity)
-    console.log('index', ev.index)
-})
-
-cart.on(EVENTS.cart.remove, index => {
-    console.log('index of the removed item', index)
-})
-
 var products = cart.products()
 
 cart.remove(1) // remove the product at index 1
@@ -63,6 +68,11 @@ var index = cart.add({ name: 'my product', quantity: 1, price: 10 }) {
 // index of item & desired quantity
 // returns itself for chaining
 cart = cart.changeQuantity(0, 2) {
+
+cart = cart.update(0, { quantityAvailable: 4 })
+// log -- 
+// product change
+// { name: 'my product', quantity: 1, price: 10, quantityAvailable: 4 }
 
 // get the cart state
 var state = cart.state()

@@ -69,6 +69,13 @@ class Cart extends Bus {
                 products: state().products
             }))
         }
+
+        this.emit(EVENTS.product.change, {
+            index: i,
+            product: updated
+        })
+
+        return this
     }
 
     changeQuantity (i, quantity) {
