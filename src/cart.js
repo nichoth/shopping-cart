@@ -54,6 +54,23 @@ class Cart extends Bus {
         return i
     }
 
+    update (i, updatedProduct) {
+        var state = this.state
+        var updated = xtend(this.products()[i], updatedProduct)
+        var products = state().products
+        products.splice(i, 1, updated)
+        state.set({
+            ohno: state().ohno,
+            products: products
+        })
+
+        if (this.storage) {
+            window.localStorage.setItem(this.KEY, JSON.stringify({
+                products: state().products
+            }))
+        }
+    }
+
     changeQuantity (i, quantity) {
         var state = this.state
         var prods = state().products

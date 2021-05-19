@@ -19,6 +19,13 @@ test('cart.add and cart.products', function (t) {
     t.end()
 })
 
+test('update method', function (t) {
+    t.plan(1)
+    cart.update(0, { foo: 'bar' })
+    console.log('aaaaaaaaa', cart.products()[0])
+    t.equal(cart.products()[0].foo, 'bar', 'should set property on product')
+})
+
 test('cart.changeQuantity', function (t) {
     t.plan(3)
     var state = cart.state
