@@ -28,7 +28,8 @@ class Cart extends Bus {
             this.storage = true
             var storageState = localStorage.getItem(this.KEY)
             if (storageState) state.set({
-                products: JSON.parse(storageState).products
+                products: JSON.parse(storageState).products,
+                ohno: JSON.parse(storageState).ohno
             })
         }
     }
@@ -47,7 +48,8 @@ class Cart extends Bus {
 
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
-                products: state().products
+                products: state().products,
+                ohno: state().ohno
             }))
         }
 
@@ -66,7 +68,8 @@ class Cart extends Bus {
 
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
-                products: state().products
+                products: state().products,
+                ohno: state().ohno
             }))
         }
 
@@ -88,7 +91,8 @@ class Cart extends Bus {
         })
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
-                products: state().products
+                products: state().products,
+                ohno: state().ohno
             }))
         }
         this.emit(EVENTS.quantity.change, { index: i, quantity: quantity })
@@ -106,15 +110,22 @@ class Cart extends Bus {
         state.set(xtend(state(), { products }))
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
-                products: state().products
+                products: state().products,
+                ohno: state().ohno
             }))
         }
     }
 
     empty () {
-        this.state.set(xtend(this.state(), { products: [] }))
+        this.state.set(xtend(this.state(), {
+            products: [],
+            ohno: false
+        }))
         if (this.storage) {
-            var data = JSON.stringify({ products: this.state().products })
+            var data = JSON.stringify({
+                products: this.state().products,
+                ohno: false
+            })
             window.localStorage.setItem(this.KEY, data)
         }
     }
