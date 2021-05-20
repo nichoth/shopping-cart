@@ -67,12 +67,23 @@ var index = cart.add({ name: 'my product', quantity: 1, price: 10 }) {
 
 // index of item & desired quantity
 // returns itself for chaining
+// will emit EvENTS.quantity.change
 cart = cart.changeQuantity(0, 2) {
 
+// will emit EVENTS.product.change (index, updatedProduct)
 cart = cart.update(0, { quantityAvailable: 4 })
-// log -- 
-// product change
-// { name: 'my product', quantity: 1, price: 10, quantityAvailable: 4 }
+
+// -----------------------------------------------------------
+
+// this renders an excalmation point in the icon
+
+cart = cart.ohno()
+// cart.state() => { ohno: true, products }
+
+cart = cart.noohno()
+// { ohno: false, products }
+
+// ---------------------------------------------------
 
 // get the cart state
 var state = cart.state()

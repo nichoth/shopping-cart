@@ -159,6 +159,11 @@ class Cart extends Bus {
         return this
     }
 
+    noohno () {
+        this.state.ohno.set(false)
+        return this
+    }
+
     createPage (el, mapper) {
         var state = this.state
         // pass in `this` as bus
