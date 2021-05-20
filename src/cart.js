@@ -29,7 +29,7 @@ class Cart extends Bus {
             var storageState = localStorage.getItem(this.KEY)
             if (storageState) state.set({
                 products: JSON.parse(storageState).products,
-                ohno: JSON.parse(storageState).ohno
+                ohno: JSON.parse(storageState).ohno || false
             })
         }
     }
