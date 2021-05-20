@@ -41,6 +41,8 @@ cart.on(EVENTS.product.change, (index, updatedProduct) => {
 
 // pass in an element to mount it at
 // or it will automatically mount to the given ID
+// for any product, if the `quantity` is greater than the
+// `quantityAvaileble`, the icon will render as an exclamation point
 cart.createIcon(document.getElementById('shopping-cart-icon'), {
     link: '/my-cart'
 })
@@ -75,15 +77,6 @@ cart = cart.update(0, { quantityAvailable: 4 })
 
 // -----------------------------------------------------------
 
-// this renders an excalmation point in the icon
-
-cart = cart.ohno()
-// cart.state() => { ohno: true, products }
-
-cart = cart.noohno()
-// { ohno: false, products }
-
-// ---------------------------------------------------
 
 // get the cart state
 var state = cart.state()
