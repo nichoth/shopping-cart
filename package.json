@@ -1,6 +1,6 @@
 {
   "name": "@nichoth/shopping-cart",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "shopping cart thing",
   "main": "src/cart.js",
   "browser": "src/cart.js",
