@@ -45,7 +45,6 @@
   "dependencies": {
     "@nichoth/events": "^1.1.2",
     "htm": "^3.0.4",
-    "observ": "^0.2.0",
     "observ-struct": "^6.0.0",
     "preact": "^10.4.5",
     "xtend": "^4.0.2"

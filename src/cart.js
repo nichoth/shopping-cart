@@ -5,7 +5,6 @@ import IconX from './icon-x'
 var connect = require('./connect')
 var Bus = require('@nichoth/events')
 var struct = require('observ-struct')
-var observ = require('observ')
 var xtend = require('xtend')
 import EVENTS from './EVENTS'
 
