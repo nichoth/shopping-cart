@@ -32,6 +32,27 @@ class Cart extends Bus {
                 ohno: JSON.parse(storageState).ohno || false
             })
         }
+
+        this.on(EVENTS.quantity.change, function ({ index, quantity }) {
+            var prod = state().products[index]
+            if (prod.quantity > prod.quantityAvailable) {
+                return state.ohno.set(true)
+            }
+            var isWonky = state().products.reduce((wonk, item) => {
+                return (wonk || item.quantity > item.quantityAvailable)
+            }, false)
+            if (isWonky !== state.ohno()) state.ohno.set(isWonky)
+        })
+
+        this.on(EVENTS.product.change, function (i, updatedProd) {
+            if (updatedProd.quantity > updatedProd.quantityAvailable) {
+                return state.ohno.set(true)
+            }
+            var isWonky = state().products.reduce((wonk, item) => {
+                return (wonk || item.quantity > item.quantityAvailable)
+            }, false)
+            if (isWonky !== state.ohno()) state.ohno.set(isWonky)
+        })
     }
 
     static createProduct (obj) {
@@ -177,15 +198,15 @@ class Cart extends Bus {
         render(html`<${view} />`, _el)
     }
 
-    ohno () {
-        this.state.ohno.set(true)
-        return this
-    }
+    // ohno () {
+    //     this.state.ohno.set(true)
+    //     return this
+    // }
 
-    noohno () {
-        this.state.ohno.set(false)
-        return this
-    }
+    // noohno () {
+    //     this.state.ohno.set(false)
+    //     return this
+    // }
 
     createPage (el, mapper) {
         var state = this.state
