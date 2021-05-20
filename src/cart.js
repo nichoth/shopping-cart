@@ -44,8 +44,8 @@ class Cart extends Bus {
             if (isWonky !== state.ohno()) state.ohno.set(isWonky)
         })
 
-        this.on(EVENTS.product.change, function (i, updatedProd) {
-            if (updatedProd.quantity > updatedProd.quantityAvailable) {
+        this.on(EVENTS.product.change, function ({ product }) {
+            if (product.quantity > product.quantityAvailable) {
                 return state.ohno.set(true)
             }
             var isWonky = state().products.reduce((wonk, item) => {

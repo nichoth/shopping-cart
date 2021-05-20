@@ -12,7 +12,7 @@ test('cart', function (t) {
 })
 
 test('cart.add and cart.products', function (t) {
-    var product = { name: 'foo', quantity: 1 }
+    var product = Cart.createProduct({ name: 'foo', quantity: 1 })
     cart.add(product)
     var ps = cart.products()
     t.equal(product.name, ps[0].name, 'should add and return the thing')
