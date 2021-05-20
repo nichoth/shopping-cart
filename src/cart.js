@@ -34,6 +34,14 @@ class Cart extends Bus {
         }
     }
 
+    static createProduct (obj) {
+        // need these two properties on `products`
+        return xtend({
+            quantity: 1,
+            quantityAvailable: 1
+        }, obj)
+    }
+
     add (_product) {
         var state = this.state
         var product = xtend(_product, {
@@ -138,8 +146,12 @@ class Cart extends Bus {
         var { link } = opts
 
         function CartIcon (props) {
-            var { ohno } = state()
+            // var { ohno } = state()
             var { products } = state()
+
+            var ohno = products.reduce((wonk, item) => {
+                return (wonk || item.quantity > item.quantityAvailable)
+            }, false)
 
             var quant = products.reduce((total, prod) => {
                 return total + (prod.quantity || 1)

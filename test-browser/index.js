@@ -53,3 +53,13 @@ test('cart.empty', function (t) {
     t.end()
 })
 
+test('createProduct', function (t) {
+    t.plan(1)
+    var prod = Cart.createProduct({ foo: 'bar', quantity: 2 })
+    t.deepEqual(prod, {
+        foo: 'bar',
+        quantity: 2,
+        quantityAvailable: 1
+    }, 'should create a product via static method')
+})
+
