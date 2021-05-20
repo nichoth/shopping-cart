@@ -20,7 +20,10 @@ test('cart.add and cart.products', function (t) {
 })
 
 test('update method', function (t) {
-    t.plan(1)
+    t.plan(2)
+    cart.once(EVENTS.product.change, function ({ product }) {
+        t.equal(product.foo, 'bar', 'should emit change event')
+    })
     cart.update(0, { foo: 'bar' })
     t.equal(cart.products()[0].foo, 'bar', 'should set property on product')
 })
