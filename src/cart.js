@@ -36,8 +36,12 @@ class Cart extends Bus {
         this.on(EVENTS.quantity.change, function ({ index, quantity }) {
             var prod = state().products[index]
             if (prod.quantity > prod.quantityAvailable) {
-                return state.ohno.set(true)
+                // only trigger a change event if necessary
+                if (!state.ohno()) return state.ohno.set(true)
+                return
             }
+
+            // if the quantity goes down, or available goes up
             var isWonky = state().products.reduce((wonk, item) => {
                 return (wonk || item.quantity > item.quantityAvailable)
             }, false)
@@ -46,8 +50,12 @@ class Cart extends Bus {
 
         this.on(EVENTS.product.change, function ({ product }) {
             if (product.quantity > product.quantityAvailable) {
-                return state.ohno.set(true)
+                // only trigger a change event if necessary
+                if (!state.ohno()) return state.ohno.set(true)
+                return
             }
+
+            // if the quantity goes down, or available goes up
             var isWonky = state().products.reduce((wonk, item) => {
                 return (wonk || item.quantity > item.quantityAvailable)
             }, false)
