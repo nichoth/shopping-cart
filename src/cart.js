@@ -19,8 +19,7 @@ class Cart extends Bus {
         super()
 
         var state = this.state = struct({
-            products: [],
-            ohno: observ(false)
+            products: []
         })
         this.KEY = opts.key
 
@@ -28,39 +27,9 @@ class Cart extends Bus {
             this.storage = true
             var storageState = localStorage.getItem(this.KEY)
             if (storageState) state.set({
-                products: JSON.parse(storageState).products,
-                ohno: JSON.parse(storageState).ohno || false
+                products: JSON.parse(storageState).products
             })
         }
-
-        this.on(EVENTS.quantity.change, function ({ index, quantity }) {
-            var prod = state().products[index]
-            if (prod.quantity > prod.quantityAvailable) {
-                // only trigger a change event if necessary
-                if (!state.ohno()) return state.ohno.set(true)
-                return
-            }
-
-            // if the quantity goes down, or available goes up
-            var isWonky = state().products.reduce((wonk, item) => {
-                return (wonk || item.quantity > item.quantityAvailable)
-            }, false)
-            if (isWonky !== state.ohno()) state.ohno.set(isWonky)
-        })
-
-        this.on(EVENTS.product.change, function ({ product }) {
-            if (product.quantity > product.quantityAvailable) {
-                // only trigger a change event if necessary
-                if (!state.ohno()) return state.ohno.set(true)
-                return
-            }
-
-            // if the quantity goes down, or available goes up
-            var isWonky = state().products.reduce((wonk, item) => {
-                return (wonk || item.quantity > item.quantityAvailable)
-            }, false)
-            if (isWonky !== state.ohno()) state.ohno.set(isWonky)
-        })
     }
 
     static createProduct (obj) {
@@ -85,8 +54,7 @@ class Cart extends Bus {
 
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
-                products: state().products,
-                ohno: state().ohno
+                products: state().products
             }))
         }
 
@@ -99,14 +67,12 @@ class Cart extends Bus {
         var products = state().products
         products.splice(i, 1, updated)
         state.set({
-            ohno: state().ohno,
             products: products
         })
 
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
-                products: state().products,
-                ohno: state().ohno
+                products: state().products
             }))
         }
 
@@ -123,13 +89,11 @@ class Cart extends Bus {
         var prods = state().products
         prods[i].quantity = quantity
         state.set({
-            ohno: state().ohno,
             products: prods
         })
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
                 products: state().products,
-                ohno: state().ohno
             }))
         }
         this.emit(EVENTS.quantity.change, { index: i, quantity: quantity })
@@ -147,21 +111,18 @@ class Cart extends Bus {
         state.set(xtend(state(), { products }))
         if (this.storage) {
             window.localStorage.setItem(this.KEY, JSON.stringify({
-                products: state().products,
-                ohno: state().ohno
+                products: state().products
             }))
         }
     }
 
     empty () {
         this.state.set(xtend(this.state(), {
-            products: [],
-            ohno: false
+            products: []
         }))
         if (this.storage) {
             var data = JSON.stringify({
-                products: this.state().products,
-                ohno: false
+                products: this.state().products
             })
             window.localStorage.setItem(this.KEY, data)
         }
@@ -175,7 +136,6 @@ class Cart extends Bus {
         var { link } = opts
 
         function CartIcon (props) {
-            // var { ohno } = state()
             var { products } = state()
 
             var ohno = products.reduce((wonk, item) => {
@@ -205,16 +165,6 @@ class Cart extends Bus {
 
         render(html`<${view} />`, _el)
     }
-
-    // ohno () {
-    //     this.state.ohno.set(true)
-    //     return this
-    // }
-
-    // noohno () {
-    //     this.state.ohno.set(false)
-    //     return this
-    // }
 
     createPage (el, mapper) {
         var state = this.state
