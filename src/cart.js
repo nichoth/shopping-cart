@@ -127,6 +127,15 @@ class Cart extends Bus {
         }
     }
 
+    ohno () {
+        // return if there is not enough of something available
+        var { products } = this.state()
+        var ohno = products.reduce((wonk, item) => {
+            return (wonk || item.quantity > item.quantityAvailable)
+        }, false)
+        return ohno
+    }
+
     createIcon (el, opts) {
         // pass in `this` as bus
         opts = opts || {}
