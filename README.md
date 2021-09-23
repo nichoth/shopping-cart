@@ -92,7 +92,7 @@ var { products } = state
 <script src="/path/to/cart/dist/bundle.js"></script>
 <script>
     var cart = new window.Cart({})
-    cart.createIcon(document.getElementById('shopping-cart-icon'), {
+    cart.createIcon(document.getElementById('shopping-cart-icon'), null, {
         link: '/my-shopping-cart'
     })
     cart.createPage(document.getElementById('shopping-cart-page'))
