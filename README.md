@@ -43,7 +43,11 @@ cart.on(EVENTS.product.change, (index, updatedProduct) => {
 // or it will automatically mount to the given ID
 // for any product, if the `quantity` is greater than the
 // `quantityAvaileble`, the icon will render as an exclamation point
-cart.createIcon(document.getElementById('shopping-cart-icon'), {
+
+// can also pass in a preact element for the icon
+
+// (el, icon, opts) {
+cart.createIcon(document.getElementById('shopping-cart-icon'), null, {
     link: '/my-cart'
 })
 cart.createPage(document.getElementById('shopping-cart-page'), mapper)
