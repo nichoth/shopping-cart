@@ -1,6 +1,6 @@
 import { render } from 'preact'
 import { html } from 'htm/preact'
-import LilCartIcon from './icon'
+import Icon from './icon'
 import IconX from './icon-x'
 var connect = require('./connect')
 var Bus = require('@nichoth/events')
@@ -147,7 +147,7 @@ class Cart extends Bus {
         var { view } = connect(state, CartIcon, this)
         var { link } = opts
 
-        var Icon = icon || LilCartIcon
+        var LilIcon = icon || Icon
 
         function CartIcon (props) {
             var { products } = state()
@@ -169,7 +169,7 @@ class Cart extends Bus {
                     <span id="cart-quantity" class="${ohno ? 'ohno' : ''}">
                         ${content}
                     <//>
-                    <${Icon} />
+                    <${LilIcon} />
                 </div>
             </a>`
         }
