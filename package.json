@@ -68,7 +68,7 @@
     "esmify": "^2.1.1",
     "husky": "^4.2.5",
     "inline-htmlify": "^2.0.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "preact-compat": "^3.19.0",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.1",
